@@ -8,6 +8,7 @@ import {
   orderBookUpdate,
 } from './orderBookUpdate';
 import { OrderBookUpdate, ServiceEventModel } from '../model';
+import { hideLoading, showLoading } from '../actions/actions';
 
 type Precision = 'P0' | 'P1' | 'P2' | 'P3' | 'P4';
 const WEBSOCKET_URL = 'wss://api-pub.bitfinex.com/ws/2';
@@ -18,10 +19,12 @@ class WebSocketService {
   private precision: string;
   private static instance: WebSocketService;
   private dispatch: Dispatch;
+  private viaDisconnect: boolean;
   constructor(url: string, dispatch: Dispatch) {
     this.url = url;
     this.dispatch = dispatch;
     this.precision = 'P0';
+    this.viaDisconnect = false;
   }
   public static getInstance(dispatch: Dispatch): WebSocketService {
     if (!WebSocketService.instance) {
@@ -52,6 +55,7 @@ class WebSocketService {
     this.socket.send(JSON.stringify(payload));
   }
   public connect(precision: Precision = 'P0') {
+    this.viaDisconnect = false;
     if (this.socket) {
       this.socket.close();
     }
@@ -66,15 +70,20 @@ class WebSocketService {
 
   public disconnect() {
     if (this.socket?.OPEN) {
+      this.viaDisconnect = true;
       this.socket.close();
     }
   }
 
   handleOpen = (event: Event) => {
+    this.dispatch(hideLoading());
     console.log('WebSocket open', event);
   };
 
   handleClose = (event: CloseEvent) => {
+    if(!this.viaDisconnect){
+      this.dispatch(showLoading());
+    }
     console.log('WebSocket close', event);
   };
 
