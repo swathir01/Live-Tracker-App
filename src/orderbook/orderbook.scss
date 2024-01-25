@@ -1,0 +1,57 @@
+$primary-color: #1b262f;
+$secondary-color: #fff;
+$tertiary-color: #657786;
+
+.main-container {
+  background-color: $primary-color;
+  color: $secondary-color;
+  font-family: 'Open Sans', sans-serif;
+  padding: 20px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  color: $secondary-color;
+
+  &header {
+    border-top: 2px solid #cccccc;
+  }
+}
+
+.button {
+    background-color: $primary-color;
+    border: none;
+    color: $secondary-color;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+
+.heading-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.precision-container {
+  display: flex;
+  justify-content: space-between;
+  width: 60px;
+}
+
+.title {
+  color: $secondary-color;
+  margin-bottom: 20px;
+}
+
+.sub-title {
+  color: $tertiary-color;
+}
+
+.table-col {
+  color: $tertiary-color;
+}
