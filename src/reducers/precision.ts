@@ -15,5 +15,3 @@ const precisionReducer = (state = initialState, action: any) => {
 };
 
 export default precisionReducer;
-
-// const selectPrecision = (state: any) => state.precision.precision;

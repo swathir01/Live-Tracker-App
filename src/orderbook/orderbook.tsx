@@ -27,18 +27,17 @@ export const OrderBook:React.FC<any> = () => {
     };
   }, [websocketService, isConnected]);
 
-  const handleConnectClick = () => {
-    dispatch(setConnected());
-  };
-
-  const handleDisconnectClick = () => {
+  const disconnectClick = () => {
     dispatch(setDisconnected());
+  };
+  const connectClick = () => {
+    dispatch(setConnected());
   };
 
   return (
     <div className='main-container'>
-      <button className='button' onClick={handleConnectClick}>Connect</button>
-      <button className='button' onClick={handleDisconnectClick}>Disconnect</button>
+      <button className='button' style={{backgroundColor: 'green'}} onClick={connectClick}>Connect</button>
+      <button className='button' style={{backgroundColor: 'red'}} onClick={disconnectClick}>Disconnect</button>
       <div className='heading-container'>
         <div>
           <h2 className='title'>
@@ -59,7 +58,7 @@ export const OrderBook:React.FC<any> = () => {
         <thead className='tableheader'>
           <tr>
             <th colSpan={4}>Bids</th>
-            <th colSpan={4}>Asks</th>
+            <th colSpan={4}>Offers</th>
           </tr>
           <tr>
           <th className="table-col">COUNT</th>
