@@ -1,6 +1,10 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Recreated the order book widget
+1. ReactJs Library.
+2. SCSS for styling the charts.
+3. Use proper data management to handle the streamline of data.
+4. Use the right data structure for storing and retrieving data easily and fast.
+5. Maintained the store in such a way that, even if we refresh the page, the trades of old data are
+retained.
 
 ## Available Scripts
 
